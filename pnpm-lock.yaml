@@ -42,6 +42,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.1.9(@types/react@19.1.13)
+      daisyui:
+        specifier: ^5.1.17
+        version: 5.1.17
       prisma:
         specifier: ^6.16.2
         version: 6.16.2(typescript@5.9.2)
@@ -744,6 +747,9 @@ packages:
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+
+  daisyui@5.1.17:
+    resolution: {integrity: sha512-ta+U710xDpDJ9l3mTH0t2sXQbPifXGziNI3/RhrMhTKg5rI26f3W0Whm5SYfz0RWh7GAWm3ARnviezoFjAFKSw==}
 
   deepmerge-ts@7.1.5:
     resolution: {integrity: sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw==}
@@ -1649,6 +1655,8 @@ snapshots:
   consola@3.4.2: {}
 
   csstype@3.1.3: {}
+
+  daisyui@5.1.17: {}
 
   deepmerge-ts@7.1.5: {}
 
