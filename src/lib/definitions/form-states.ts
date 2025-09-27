@@ -9,3 +9,17 @@ export type SignInFormState = {
     password?: string;
   };
 };
+
+export type SignUpFormState = {
+  success?: boolean;
+  errors?: {
+    username?: string[];
+    email?: string[];
+    password?: string[];
+  };
+  form?: {
+    username?: string;
+    email?: string;
+    password?: string;
+  };
+};

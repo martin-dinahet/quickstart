@@ -23,14 +23,10 @@ export const signIn = async (prevState: SignInFormState, formData: FormData) => 
       errors: parsed.error.flatten().fieldErrors,
     };
   }
-  try {
-    const existingUser = await prisma.user.findUnique({
-      where: { email: parsed.data.email },
-    });
-    if (!existingUser) throw new Error();
-    await createSession(existingUser.id);
-    redirect("/dashboard");
-  } catch (error) {
+  const existingUser = await prisma.user.findUnique({
+    where: { email: parsed.data.email },
+  });
+  if (!existingUser) {
     return {
       success: false,
       form: {
@@ -38,7 +34,20 @@ export const signIn = async (prevState: SignInFormState, formData: FormData) => 
         email: emailString,
         password: passwordString,
       },
-      errors: { email: ["Invalid email or password"] },
+      errors: { email: ["User not found"] },
     };
   }
+  if (existingUser.password !== parsed.data.password) {
+    return {
+      success: false,
+      form: {
+        ...prevState?.form,
+        email: emailString,
+        password: passwordString,
+      },
+      errors: { password: ["Incorrect email or password"] },
+    };
+  }
+  await createSession(existingUser.id);
+  redirect("/dashboard");
 };
