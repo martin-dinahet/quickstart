@@ -8,15 +8,13 @@ export const metadata: Metadata = {
 };
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
-  {
-    return (
-      <html lang="en">
-        <body className="antialiased">
-          <main>{children}</main>
-        </body>
-      </html>
-    );
-  }
+  return (
+    <html lang="en">
+      <body className="antialiased">
+        <main>{children}</main>
+      </body>
+    </html>
+  );
 };
 
 export default RootLayout;
