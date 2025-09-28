@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, type FC } from "react";
+import type { FC } from "react";
+import { useActionState } from "react";
 import { signIn } from "@/lib/actions/auth/sign-in";
 
 const SignInPage: FC = () => {

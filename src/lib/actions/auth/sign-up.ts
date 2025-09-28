@@ -1,10 +1,10 @@
 "use server";
 
-import type { SignUpFormState } from "@/lib/definitions/form-states";
+import { redirect } from "next/navigation";
 import { signUpSchema } from "@/lib/definitions/auth";
+import type { SignUpFormState } from "@/lib/definitions/form-states";
 import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/session";
-import { redirect } from "next/navigation";
 
 export const signUp = async (prevState: SignUpFormState, formData: FormData) => {
   const username = formData.get("username");
@@ -30,32 +30,10 @@ export const signUp = async (prevState: SignUpFormState, formData: FormData) => 
       errors: parsed.error.flatten().fieldErrors,
     };
   }
-  try {
-    const existingUser = await prisma.user.findUnique({
-      where: { email: parsed.data.email },
-    });
-    if (existingUser) {
-      return {
-        success: false,
-        form: {
-          ...prevState?.form,
-          username: usernameString,
-          email: emailString,
-          password: passwordString,
-        },
-        errors: { email: ["Email already in use"] },
-      };
-    }
-    const newUser = await prisma.user.create({
-      data: {
-        username: parsed.data.username,
-        email: parsed.data.email,
-        password: parsed.data.password,
-      },
-    });
-    await createSession(newUser.id);
-    redirect("/dashboard");
-  } catch (error) {
+  const existingUser = await prisma.user.findUnique({
+    where: { email: parsed.data.email },
+  });
+  if (existingUser) {
     return {
       success: false,
       form: {
@@ -64,7 +42,16 @@ export const signUp = async (prevState: SignUpFormState, formData: FormData) => 
         email: emailString,
         password: passwordString,
       },
-      errors: { email: ["An unexpected error occurred. Please try again."] },
+      errors: { email: ["Email already in use"] },
     };
   }
+  const newUser = await prisma.user.create({
+    data: {
+      username: parsed.data.username,
+      email: parsed.data.email,
+      password: parsed.data.password,
+    },
+  });
+  await createSession(newUser.id);
+  redirect("/dashboard");
 };

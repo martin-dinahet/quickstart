@@ -6,8 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "biome check",
-    "format": "biome format --write"
+    "biome-lint": "biome check",
+    "biome-fix": "biome check --write",
+    "biome-format": "biome format --write"
   },
   "dependencies": {
     "@prisma/client": "^6.16.2",

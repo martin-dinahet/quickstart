@@ -1,17 +1,20 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { loginSchema } from "@/lib/definitions/auth";
-import { SignInFormState } from "@/lib/definitions/form-states";
+import type { SignInFormState } from "@/lib/definitions/form-states";
 import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/session";
-import { redirect } from "next/navigation";
 
 export const signIn = async (prevState: SignInFormState, formData: FormData) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const emailString = typeof email === "string" ? email : "";
   const passwordString = typeof password === "string" ? password : "";
-  const parsed = loginSchema.safeParse({ email: emailString, password: passwordString });
+  const parsed = loginSchema.safeParse({
+    email: emailString,
+    password: passwordString,
+  });
   if (!parsed.success) {
     return {
       success: false,
