@@ -1,8 +1,6 @@
-"use server";
-
 import type { FC } from "react";
 
-const Page: FC = async () => {
+const Page: FC = () => {
   return <div>Hello, World!</div>;
 };
 
