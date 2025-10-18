@@ -1,8 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { signUpSchema } from "@/lib/definitions/auth";
 import type { SignUpFormState } from "@/lib/definitions/form-states";
+import { signUpSchema } from "@/lib/definitions/sign-up";
 import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/session";
 

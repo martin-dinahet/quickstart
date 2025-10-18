@@ -1,5 +1,3 @@
-"use server";
-
 import type { Metadata } from "next";
 import type { FC, PropsWithChildren } from "react";
 import "@/tailwind.css";
