@@ -19,6 +19,12 @@ export const signUp = async (prevState: SignUpFormState, formData: FormData) => 
     password: passwordString,
   });
   if (!parsed.success) {
+    const formatted = parsed.error.format((issue) => issue.message);
+    const fieldErrors = {
+      username: formatted.username?._errors ?? [],
+      email: formatted.email?._errors ?? [],
+      password: formatted.password?._errors ?? [],
+    } as Record<string, string[]>;
     return {
       success: false,
       form: {
@@ -27,7 +33,7 @@ export const signUp = async (prevState: SignUpFormState, formData: FormData) => 
         email: emailString,
         password: passwordString,
       },
-      errors: parsed.error.flatten().fieldErrors,
+      errors: fieldErrors,
     };
   }
   const existingUser = await prisma.user.findUnique({
