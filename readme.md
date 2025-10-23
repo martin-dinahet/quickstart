@@ -1,107 +1,157 @@
 # ⚡ Quickstart
 
-A simple, modular **Next.js full-stack boilerplate** — batteries included! 🚀
+Une solution simple, modulaire et moderne pour initialiser son application Next.JS facilement et rapidement !
 
-## Getting Started
+## Démarrage rapide, pour les flemmards
 
-1. **Clone the repository**
-   Choose your project name and branch (see [Branches](#branches)).
+```bash
+# cloner le dépôt
+git clone -b main https://github.com/martin-dinahet-quickstart.git
 
-   ```zsh
-   git clone https://github.com/martin-dinahet/quickstart --branch=main my-cool-app
-   cd my-cool-app
-   ```
+# réinitialiser l'historique Git
+rm -rf .git
+git init
 
-2. **Install dependencies**
+# installer les dépendances
+npm install
 
-   ```zsh
-   pnpm install
-   ```
+# lancer la base de données en mode développement
+npx prisma studio
 
-3. **Set up environment variables**
+# lancer le serveur de développement
+npm run dev
+```
 
-   * Add your database URL in a new `.env` file.
-   * If you’re using the `auth` branch, also include a `SESSION_KEY`.
+## Documentation
 
-   Example `.env`:
+### Choisir votre branche
 
-   ```env
-   DATABASE_URL="your-database-url"
-   SESSION_KEY="super-secret-key"
-   ```
+Ce projet propose actuellement deux branches selon vos besoins :
 
-4. **Run database migrations**
-   Generate the Prisma client and apply migrations to your database:
+- **`main`** : version de base sans authentification
+- **`auth`** : version avec un système d'authentification intégré
 
-   ```zsh
-   pnpm prisma generate
-   pnpm prisma migrate dev
-   ```
+Pour cloner la branche souhaitée :
 
-5. **Run the development server**
+```bash
+# Sans authentification
+git clone -b main https://github.com/martin-dinahet/quickstart.git <nom-du-projet>
 
-   ```zsh
-   pnpm dev
-   ```
+# Avec authentification
+git clone -b auth https://github.com/martin-dinahet/quickstart.git <nom-du-projet>
+```
 
-   Your app will be live at [http://localhost:3000](http://localhost:3000).
+Ou si vous avez déjà cloné le dépôt :
 
----
+```bash
+# Basculer vers la branche main
+git checkout main
+
+# Basculer vers la branche auth
+git checkout auth
+```
+
+### Réinitialiser Git
+
+Lorsque vous clonez ce dépôt, il conserve l'historique Git du projet original. Pour commencer avec un historique propre :
+
+```bash
+# Supprimer l'historique Git existant
+rm -rf .git
+
+# Initialiser un nouveau dépôt Git
+git init
+
+# Faire votre premier commit
+git add --all
+git commit -m "chore(repo): initial commit"
+```
+
+### Installer les dépendances
+
+Après avoir cloné le projet, vous devez installer toutes les dépendances nécessaires au fonctionnement de l'application.
+
+```bash
+npm install
+# ou
+pnpm install
+# ou
+yarn install
+```
+
+Pourquoi cette étape est nécessaire ?
+
+- Le dossier `node_modules` n'est pas inclus dans le dépôt Git (trop volumineux)
+- Cette commande télécharge tous les packages listés dans `package.json`
+- Elle installe Next.js, React, et toutes les librairies utilisées par le projet
+- Sans cette étape, votre application ne pourra pas démarrer
 
 
+### Configuration de l'environnement
 
-## UI Components: DaisyUI
+**Créer le fichier `.env`**
 
-This project uses **DaisyUI** as a Tailwind CSS plugin for rapid, beautiful UI development.
+Créez un fichier `.env` à la racine du projet.
 
-- **What is DaisyUI?**  
-   DaisyUI is a Tailwind CSS component library that provides pre-styled, customizable UI elements. It helps you build modern interfaces quickly without writing custom CSS.
+**Variables d'environnement requises**
 
-- **Integration:**  
-   DaisyUI is installed as a dependency and imported in `src/tailwind.css` using `@plugin "daisyui";`.  
-   Tailwind CSS is also set up in the project, so you can use both Tailwind utility classes and DaisyUI components together.
+Pour toutes les branches :
 
-- **Usage:**  
-   Use DaisyUI classes (e.g., `btn`, `card`, `input`, `fieldset`, etc.) in your React components. See the sign-in and sign-up pages for examples:
-   - `fieldset`, `input`, `label`, and other DaisyUI classes are used for form styling.
+```env
+# Database
+DATABASE_URL="url-de-votre-base-de-données
+```
 
-- **Customization:**  
-   DaisyUI supports themes and customization. You can adjust its config in your Tailwind setup to match your branding.
+Pour la branche `auth` uniquement : 
 
-- **Learn More:**  
-   Visit [daisyui.com](https://daisyui.com) for documentation and examples.
+```env
+# Session (générez une clé aléatoire et sécurisée)
+SESSION_SECRET="votre-clé-secrète-aléatoire-et-longue"
+```
 
----
+### Configuration de Prisma
 
-## Authentication (`auth` branch)
+**Configurer votre base de données**
 
-The `auth` branch adds a simple authentication system to the boilerplate. Here’s how it works:
+Le projet utilise Prisma comme ORM. Il est recommandé d'utiliser PostgreSQL.
+Modifiez `DATABASE_URL` dans `.env` et ajoutez-y l'URL de votre base de données.
 
-- **Sign In & Sign Up Pages:**  
-   Located at `/src/app/auth/sign-in/page.tsx` and `/src/app/auth/sign-up/page.tsx`.  
-   These pages provide forms for users to log in or create an account using email, password, and (for sign-up) username.
+**Créer des tables**
 
-- **Form Handling:**  
-   The forms use React’s `useActionState` to manage submission, validation errors, and loading state.  
-   On submit, the form calls an action (e.g., `signIn` or `signUp`) to process credentials.
+Ajoutez les tables nécessaires au fonctionnement de votre application dans le fichier `prisma/schema.prisma`. Pour des instructions sur comment créer des tables, veuillez vous référer à la documentation officielle de Prisma. Pour la branche `auth`, la table `User` permet le bon fonctionnement du système d'authentification et d'accéder aux détails de l'utilisateur actuel.
 
-- **Server Actions:**  
-   The actual authentication logic (checking credentials, creating users, etc.) is handled by server actions (not shown in the current codebase, but typically found in `/src/lib/actions/auth/`).  
-   These actions interact with your database (via Prisma) to verify users and manage sessions.
+Appliquez les migrations pour créer les tables dans votre base de données (si vous en avez une):
 
-- **Session Management:**  
-   You must set a `SESSION_KEY` in your `.env` file.  
-   This key is used to sign and verify session tokens, keeping users logged in securely.
+```bash
+# npm
+npx prisma migrate dev
 
-- **Environment Variables:**  
-   Add both `DATABASE_URL` and `SESSION_KEY` to your `.env` file for authentication to work.
+# pnpm
+pnpm prisma migrate dev
+```
 
-- **Extending Auth:**  
-   You can customize authentication logic, add OAuth providers, or enhance validation by editing the server actions and form components.
+### Mode développement
 
----
+Pour faciliter votre expérience développeur, vous pouvez ouvrir le mode studio de Prisma:
 
-### 🔀 Branches
+```bash
+# npm
+npx prisma studio
 
-* `main` → minimal setup
-* `auth` → authentication included
+# pnpm
+pnpm prisma studio
+```
+
+Pour rapidement créer une base de données de développement:
+
+```bash
+# npm
+npx prisma dev
+
+# pnpm
+pnpm prisma dev
+```
+
+### Linting et formattage: Biome
+
+Ce projet utilise Biome comme linter et formatteur de code. Veuillez vous référer à la documentation officielle concernant l'utilisation et la configuration de cet outil.
