@@ -8,6 +8,6 @@
     "source.removeUnusedImports.biome": "explicit"
   },
   "files.associations": {
-    "*.css": "tailwindcss"
+    ".css": "tailwindcss"
   }
 }
