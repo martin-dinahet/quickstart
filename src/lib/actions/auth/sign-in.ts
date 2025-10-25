@@ -34,7 +34,7 @@ export const signIn = async (prevState: SignInFormState, formData: FormData) => 
     return {
       success: false,
       form: { ...prevState?.form, email: emailString, password: passwordString },
-      errors: { email: ["User not found"] },
+      errors: { email: ["Incorrect email or password"] },
     };
   }
   if (existingUser.password !== parsed.data.password) {

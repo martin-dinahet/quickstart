@@ -58,7 +58,7 @@ const SignUpPage: FC = () => {
           {data?.errors.password && <p className="text-error">{data.errors.password}</p>}
           {/* Submit button */}
           <button type="submit" disabled={pending} className="btn btn-neutral mt-4">
-            {pending ? <span className="loading loading-dots" /> : "Sign In"}
+            {pending ? <span className="loading loading-dots" /> : "Sign Up"}
           </button>
         </fieldset>
       </form>
