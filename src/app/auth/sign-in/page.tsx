@@ -40,7 +40,7 @@ const SignInPage: FC = () => {
             name="password"
             defaultValue={data?.form.password}
             className="input"
-            placeholder="Password"
+            placeholder="●●●●●●●●"
           />
           {data?.errors.password && <p className="text-error">{data.errors.password}</p>}
           {/* Submit button */}
