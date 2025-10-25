@@ -34,7 +34,7 @@ describe("SignInPage", () => {
       false,
     ]);
     render(<SignInPage />);
-    const legendElement = screen.getByText("Login");
+    const legendElement = screen.getByText("Login", { selector: "legend" });
     expect(legendElement).toBeInTheDocument();
   });
 

@@ -34,7 +34,7 @@ describe("SignUpPage", () => {
       false,
     ]);
     render(<SignUpPage />);
-    const legendElement = screen.getByText("Sign Up");
+    const legendElement = screen.getByText("Sign Up", { selector: "legend" });
     expect(legendElement).toBeInTheDocument();
   });
 
