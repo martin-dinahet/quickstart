@@ -10,7 +10,7 @@ jest.mock("react", () => {
   };
 });
 
-jest.mock("/src/lib/actions/auth/sign-up", () => ({
+jest.mock("@/lib/actions/auth/sign-up", () => ({
   signUp: jest.fn(() =>
     Promise.resolve({
       success: false,
