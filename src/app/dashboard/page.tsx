@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { signOutAction } from "@/actions/auth/sign-out-action";
+import { signOutAction } from "@/lib/actions/auth/sign-out-action";
 import { auth } from "@/lib/auth";
 
 export default async function DashboardPage() {

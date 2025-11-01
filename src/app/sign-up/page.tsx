@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { signUpAction } from "@/actions/auth/sign-up-action";
+import { signUpAction } from "@/lib/actions/auth/sign-up-action";
 import { auth } from "@/lib/auth";
 
 export default async function SignUpPage() {
