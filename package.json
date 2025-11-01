@@ -7,6 +7,8 @@
     "next:build": "next build",
     "next:start": "next start",
     "biome:check": "biome check",
+    "biome:lint": "biome lint",
+    "biome:format": "biome format",
     "biome:fix": "biome fix",
     "drizzle:studio": "drizzle-kit studio",
     "drizzle:push": "drizzle-kit push"
