@@ -1,11 +1,7 @@
-import type { FC } from "react";
-
-const Page: FC = () => {
+export default function HomePage() {
   return (
     <div>
       <h1>Hello, World!</h1>
     </div>
   );
-};
-
-export default Page;
+}
