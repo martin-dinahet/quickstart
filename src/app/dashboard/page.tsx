@@ -4,6 +4,7 @@ import { signOutAction } from "@/lib/actions/auth/sign-out-action";
 import { auth } from "@/lib/auth";
 
 export default async function DashboardPage() {
+  // Redirect to dashbaord if already signed in
   const session = await auth.api.getSession({
     headers: await headers(),
   });
