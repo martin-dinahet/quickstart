@@ -1,0 +1,32 @@
+{
+  "name": "quickstart",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "next:dev": "next dev --turbopack",
+    "next:build": "next build --turbopack",
+    "next:start": "next start",
+    "biome:lint": "biome lint --write",
+    "biome:check": "biome check --write",
+    "biome:format": "biome format --write"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "next": "15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "daisyui": "^5.1.17",
+    "prisma": "^6.19.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.20.5",
+    "typescript": "^5"
+  }
+}
