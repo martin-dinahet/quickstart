@@ -1,0 +1,10 @@
+{
+  "name": "vite-hono-monorepo",
+  "type": "module",
+  "scripts": {},
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "pnpm@10.21.0"
+}
