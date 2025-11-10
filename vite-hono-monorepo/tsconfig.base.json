@@ -1,23 +1,20 @@
 {
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["packages/shared/*"]
-    },
-  },
-  "include": [
-    "apps/**/*",
-    "packages/**/*",
-  ],
-  "references": [
-    { "path": "apps/frontend" },
-    { "path": "apps/backend" },
-    { "path": "packages/shared" },
-  ]
+	"compilerOptions": {
+		"target": "es2022",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@shared/*": ["packages/shared/*"]
+		}
+	},
+	"include": ["apps/**/*", "packages/**/*"],
+	"references": [
+		{ "path": "apps/frontend" },
+		{ "path": "apps/backend" },
+		{ "path": "packages/shared" }
+	]
 }
